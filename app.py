@@ -136,7 +136,7 @@ O **Manga Oracle** (tradução literal: *Oráculo dos Mangás*) é um Trabalho d
 
 O projeto tem como objetivo recomendar mangás com base em uma entrada utilizando os dados obtidos via API do site de catalogação [AniList](https://anilist.co/).  
 
-Para mais detalhes, visite a página no [GitHub do projeto](https://github.com/seu_usuario/seu_repositorio).
+Para mais detalhes, visite a página no [GitHub do projeto](https://github.com/DiegoAluizio/TCC-MangaOracle).
 """)
 
 
@@ -205,4 +205,5 @@ if st.button("Gerar Recomendações"):
                     else:
                         st.write("Sinopse indisponível.")
                 with st.expander("📖 Gêneros"):
+
                     st.markdown(row["generos"])
