@@ -199,7 +199,7 @@ if st.button("Gerar Recomendações"):
             with cols[1]:
                 st.markdown(f"**{row['titulo_romaji']}**")
                 st.write(f"📊 Nota Média no Anilist: {row['nota_media']} | ⭐ Favoritos: {row['favoritos']} | 📈 Popularidade: {row['popularidade']}")
-                st.write(f"🖊️ Autores: {row['autores']}")
+                st.write(f"🖊️ Autores e equipe: {row['autores']}")
                 with st.expander("📖 Sinopse"):
                     if "descricao" in row and pd.notna(row["descricao"]) and len(str(row["descricao"]).strip()) > 0:
                         st.markdown(row["descricao"], unsafe_allow_html=True)
@@ -208,6 +208,7 @@ if st.button("Gerar Recomendações"):
                 with st.expander("📖 Gêneros"):
 
                     st.markdown(row["generos"])
+
 
 
 
