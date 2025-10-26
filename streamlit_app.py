@@ -149,15 +149,17 @@ metodo = st.radio("Escolha o método de recomendação:", ["TF-IDF", "Pesos", "P
 
 with st.expander("ℹ️ Sobre os métodos"):
     st.markdown("""
-O método TF-IDF é uma método que seleciona características "raras" de um elemento e aumenta o peso delas para averiguar sua semelhanças com outros.
+O método TF-IDF é um método que seleciona características "raras" de um elemento e aumenta o peso delas para averiguar sua semelhanças com outros.
 
-O método de Pesos funciona ao pré-determinar os pesos de um grupo de características para a comparação e análise de semelhança. No caso do Manga Oracle, os pesos foram atribuídos a três itens:
+O método de Pesos funciona ao pré-determinar os pesos de um grupo de características para a comparação e análise de semelhança. No caso do Manga Oracle, os pesos foram atribuídos a três grupos de características:
                 
-**Gêneros:** Características descritivas amplas, como Terror, Ação e Romance. Cada mangá tem, em média, 3,54 gêneros.
+**Gêneros:** Características descritivas amplas, como Terror, Ação e Romance.
                 
-**Tags:** Características descritivas mais restritas. Dizem respeito a temas e aspectos mais intrínsecos à obra como Dêmonios, Protagonista Masculino e Depressão. Cada mangá tem, em média 16,17 tags.
+**Tags:** Características descritivas mais restritas. Dizem respeito a temas e aspectos mais intrínsecos à obra como Dêmonios, Protagonista Masculino e Depressão.
                 
-**Variáveis numéricas:** Neste campo estão as duas variáveis de ordem numérica utilizadas como parâmetro para a recomendação: Popularidade na plataforma (medida em quantidade de listas em que o determinado mangá está presente) e Nota média na plataforma (nota média que os usuários da plataforma deram para aquele mangá).
+**Variáveis numéricas:** Neste campo estão as duas variáveis de ordem numérica utilizadas como parâmetro para a recomendação: Popularidade na plataforma (medida em quantidade de listas em que o determinado mangá está presente) e Nota média na plataforma (nota média que os usuários da plataforma Anilist deram para aquele mangá).
+
+O método Pesos + TF-IDF é uma mescla dos dois métodos anteriores.
 
 Para mais detalhes, visite a página no [GitHub do projeto](https://github.com/seu_usuario/seu_repositorio).
 """)
@@ -206,4 +208,5 @@ if st.button("Gerar Recomendações"):
                 with st.expander("📖 Gêneros"):
 
                     st.markdown(row["generos"])
+
 
