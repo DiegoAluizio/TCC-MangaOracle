@@ -6,9 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.sparse import hstack
 
-# ==============================
 # Funções comuns
-# ==============================
 def carregar_dados(caminho_excel="mangas.xlsx", nome_planilha=None):
     excel_data = pd.ExcelFile(caminho_excel)
     if nome_planilha is None:
@@ -56,9 +54,8 @@ def carregar_dados(caminho_excel="mangas.xlsx", nome_planilha=None):
     return df
 
 
-# ==============================
 # Método 1 - TF-IDF
-# ==============================
+
 def preparar_vetores_idf(df):
     df["texto"] = df["generos"] + " " + df["tags"]
     tfidf = TfidfVectorizer(token_pattern=r"[^, ]+")
@@ -101,9 +98,9 @@ def recomendar_pesos(df, vetores, titulo, coluna_titulo="titulo_romaji", top_n=1
     return df.iloc[indices]
 
 
-# ==============================
+
 # Método 3 - Pesos + TF-IDF
-# ==============================
+
 def preparar_vetores_pidf(df, peso_generos=1, peso_tags=1, peso_num=1):
     tfidf_gen = TfidfVectorizer(token_pattern=r"[^, ]+")
     generos_matrix = tfidf_gen.fit_transform(df["generos"]) * peso_generos
@@ -125,9 +122,9 @@ def recomendar_pidf(df, vetores, titulo, coluna_titulo="titulo_romaji", top_n=10
     return df.iloc[indices]
 
 
-# ==============================
+
 # Streamlit App
-# ==============================
+
 st.set_page_config(page_title="Manga Oracle", layout="wide")
 st.title("📖 Manga Oracle - Sistema de Recomendação")
 with st.expander("ℹ️ Sobre o trabalho"):
@@ -147,6 +144,9 @@ idioma_busca = st.radio("Buscar título em:", ["Romaji (Japonês com caracteres 
 coluna_titulo = "titulo_romaji" if idioma_busca == "Romaji (Japonês com caracteres romanos)" else "titulo_ingles"
 
 # Escolha do método
+
+metodo = st.radio("Escolha o método de recomendação:", ["TF-IDF", "Pesos", "Pesos + TF-IDF"])
+
 with st.expander("ℹ️ Sobre os métodos"):
     st.markdown("""
 O método TF-IDF é uma método que seleciona características "raras" de um elemento e aumenta o peso delas para averiguar sua semelhanças com outros.
@@ -161,7 +161,6 @@ O método de Pesos funciona ao pré-determinar os pesos de um grupo de caracter�
 
 Para mais detalhes, visite a página no [GitHub do projeto](https://github.com/seu_usuario/seu_repositorio).
 """)
-metodo = st.radio("Escolha o método de recomendação:", ["TF-IDF", "Pesos", "Pesos + TF-IDF"])
 
 peso_generos, peso_tags, peso_num = 1, 1, 1
 if metodo in ["Pesos", "Pesos + TF-IDF"]:
@@ -207,3 +206,4 @@ if st.button("Gerar Recomendações"):
                 with st.expander("📖 Gêneros"):
 
                     st.markdown(row["generos"])
+
