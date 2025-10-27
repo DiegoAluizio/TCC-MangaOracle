@@ -167,9 +167,9 @@ Para mais detalhes, visite a página no [GitHub do projeto](https://github.com/s
 peso_generos, peso_tags, peso_num = 1, 1, 1
 if metodo in ["Pesos", "Pesos + TF-IDF"]:
     st.subheader("⚖️ Ajuste os pesos")
-    peso_generos = st.slider("Peso para Gêneros", 1, 5, 2)
-    peso_tags = st.slider("Peso para Tags", 1, 5, 3)
-    peso_num = st.slider("Peso para Variáveis Numéricas", 1, 5, 1)
+    peso_generos = st.slider("Peso para Gêneros", 1, 10, 2)
+    peso_tags = st.slider("Peso para Tags", 1, 10, 3)
+    peso_num = st.slider("Peso para Variáveis Numéricas", 1, 10, 1)
 
 # Escolha do mangá
 titulo = st.selectbox(f"Selecione um mangá com título em {idioma_busca}:", df[coluna_titulo].dropna().unique())
@@ -208,6 +208,7 @@ if st.button("Gerar Recomendações"):
                 with st.expander("📖 Gêneros"):
 
                     st.markdown(row["generos"])
+
 
 
 
